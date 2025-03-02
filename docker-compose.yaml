@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  jupyter:
+    image: jupyter:x86_64-python-3.11
+    build:
+      context: ./src/infra/jupyter/
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8888:8888"
+    volumes:
+      - jupyter-data:/home/jovyan/work
+
+volumes:
+  jupyter-data:
+
+networks:
+  default:
+    name: jupyter
